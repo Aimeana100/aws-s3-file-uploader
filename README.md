@@ -17,8 +17,11 @@ This is a simple Node.js and Express.js application that allows you to upload fi
 Set up your AWS S3 credentials in the `app.ts` file:
 
 ```typescript
-// app.ts
-const s3 = new AWS.S3({
-  accessKeyId: 'YOUR_ACCESS_KEY',
-  secretAccessKey: 'YOUR_SECRET_KEY',
-});
+// src/app.ts
+const s3 = new S3Client({
+    credentials: {
+      accessKeyId: process.env.AWS_ACCESS_KEY as string,
+      secretAccessKey: process.env.AWS_SECRET_KEY as string,
+    },
+    region: process.env.AWS_REGION as string,
+  })
